@@ -1,0 +1,18 @@
+Dashboard -> Manage Jenkins -> Plugins -> Available plugins  
+
+# SonarQube :
+Sonar Gerrit  
+SonarQube Scanner  
+SonarQube Generic Coverage  
+Sonar Quality Gates  
+Quality Gates  
+-------------------
+# JFrog
+Artifactory  
+Jfrog 
+
+######################################################
+
+# Maven
+
+Manage Jenkins -> Tools -> Maven Installations -> Add Maven
