@@ -1,0 +1,29 @@
+
+# Create Sonar token for jenkins :
+
+Sonar Dashboard -> Administration -> My Account -> Security -> Generate Tokens
+Name : Jenkins
+Type : Global Analysis Token
+Expires in : 30 days
+Save the token to some text file
+------------------------------------
+# Integrate Jenkins to Sonar 
+
+Jenkins Dashboad -> Manage Jenkins -> system -> SonarQube servers -> Add SonarQube
+Name : sonar-api
+Server URL : http://ip:9000
+Server authentication token :
+  Secret text :
+  Scope: Global
+  Secret : paste token
+  ID & Description : sonarqube-api
+-------------------------------------
+# Integrate Sonar to Jenkins
+
+Sonar Dashboard -> Adminisration -> Configuration -> webhooks -> create
+Name : Jenkins
+URL  : http://PublicIp:8080/sonarqube-webhook/
+Secret : not required
+
+
+
