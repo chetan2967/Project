@@ -1,6 +1,8 @@
 ##Install in Amazon Ubuntu
 #!/bin/bash
 
+sudo su
+
 sudo apt update -y
 
 sudo apt upgrade -y 
