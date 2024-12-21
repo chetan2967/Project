@@ -11,6 +11,8 @@ sudo apt upgrade -y
 
 #Java
 
+sudo apt install openjdk-8-jdk 
+sudo apt install openjdk-11-jdk
 sudo apt install openjdk-17-jre -y
 
 #################################################################
@@ -31,6 +33,7 @@ sudo apt-get install jenkins -y
 # allow all networks
 # open url in browser
 # cat on password location
+# select suggested plugins option
 
 ############################################################################
 
