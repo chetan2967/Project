@@ -1,0 +1,18 @@
+environment {
+    // Define any environment variables you might need
+    GIT_REPO_URL = 'https://github.com/your-repo/your-project.git'
+    GIT_BRANCH = 'main' // Replace with the branch you want to check out
+}
+
+stage('Checkout Code') {
+    steps {
+        script {
+            // Checkout the repository using the 'checkout' method
+            checkout([
+                $class: 'GitSCM',
+                branches: [[name: "*/${env.GIT_BRANCH}"]],
+                userRemoteConfigs: [[url: env.GIT_REPO_URL]]
+            ])
+        }
+    }
+}
