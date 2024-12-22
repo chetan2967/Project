@@ -1,0 +1,32 @@
+SONARQUBE_SERVER = 'Sonarqube-api' // Replace with your SonarQube server name in Jenkins
+SONARQUBE_PROJECT_KEY = 'your-project-key' // Replace with your SonarQube project key
+
+stage('SonarQube Analysis') {
+    steps {
+        script {
+            withSonarQubeEnv(env.SONARQUBE_SERVER) {
+                sh "mvn sonar:sonar -Dsonar.projectKey=${env.SONARQUBE_PROJECT_KEY}"
+            }
+        }
+    }
+}
+
+Already Added during integration:
+-Dsonar.host.url=<sonarqube-server-url> 
+-Dsonar.login=<token>  
+
+==========================================================================================================
+
+stage('Quality Gate') {
+    steps {
+        script {
+            timeout(time: 2, unit: 'MINUTES') { // Adjust timeout as needed
+                def qualityGate = waitForQualityGate()
+                if (qualityGate.status != 'OK') {
+                    error "Pipeline aborted due to SonarQube Quality Gate failure: ${qualityGate.status}"
+                }
+            }
+        }
+    }
+}
+
