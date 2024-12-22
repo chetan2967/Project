@@ -15,6 +15,14 @@ Already Added during integration:
 -Dsonar.host.url=<sonarqube-server-url> 
 -Dsonar.login=<token>  
 
+-----------------------------------------------------------------
+withSonarQubeEnv(env.SONARQUBE_SERVER) {
+    sh """
+    mvn sonar:sonar \
+        -Dsonar.projectKey=${env.SONARQUBE_PROJECT_KEY} \
+        -Dsonar.host.url=${env.SONARQUBE_SERVER} \
+        -Dsonar.login=${env.SONARQUBE_TOKEN}
+    """
 ==========================================================================================================
 
 stage('Quality Gate') {
