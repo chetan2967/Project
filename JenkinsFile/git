@@ -10,8 +10,8 @@ stage('Checkout Code') {
             // Checkout the repository using the 'checkout' method
             checkout([
                 $class: 'GitSCM',
-                branches: [[name: "*/${env.GIT_BRANCH}"]],
-                userRemoteConfigs: [[url: env.GIT_REPO_URL]]
+                branches: [[name: "*/main"]],
+                userRemoteConfigs: [[url: https://github.com/your-repo/your-project.git]]
             ])
         }
     }
