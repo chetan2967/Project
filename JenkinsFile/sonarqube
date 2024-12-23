@@ -11,6 +11,9 @@ stage('SonarQube Analysis') {
     }
 }
 
+The tool function is used to locate the SonarScanner installation configured in Jenkins.
+${scannerHome}/bin/sonar-scanner runs the SonarScanner binary.
+
 -----------------------------------------------------------------
 withSonarQubeEnv(env.SONARQUBE_SERVER) {
     sh """
