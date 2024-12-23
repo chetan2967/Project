@@ -1,19 +1,15 @@
-SONARQUBE_SERVER = 'Sonarqube-api' // Replace with your SonarQube server name in Jenkins
-SONARQUBE_PROJECT_KEY = 'your-project-key' // Replace with your SonarQube project key
-
 stage('SonarQube Analysis') {
+    environment {
+        scannerHome = tool 'SonarScanner'
+    }
     steps {
         script {
-            withSonarQubeEnv(env.SONARQUBE_SERVER) {
-                sh "mvn sonar:sonar -Dsonar.projectKey=${env.SONARQUBE_PROJECT_KEY}"
+            withSonarQubeEnv(SonarQube-Sever) {
+                sh "{scannerHome}/bin/sonar-scanner"
             }
         }
     }
 }
-
-Already Added during integration:
--Dsonar.host.url=<sonarqube-server-url> 
--Dsonar.login=<token>  
 
 -----------------------------------------------------------------
 withSonarQubeEnv(env.SONARQUBE_SERVER) {
