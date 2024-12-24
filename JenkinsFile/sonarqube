@@ -5,7 +5,7 @@ stage('SonarQube Analysis') {
     steps {
         script {
             withSonarQubeEnv(SonarQube-Sever) {
-                sh "{scannerHome}/bin/sonar-scanner"
+                sh "${scannerHome}/bin/sonar-scanner"
             }
         }
     }
@@ -14,20 +14,12 @@ stage('SonarQube Analysis') {
 The tool function is used to locate the SonarScanner installation configured in Jenkins.
 ${scannerHome}/bin/sonar-scanner runs the SonarScanner binary.
 
------------------------------------------------------------------
-withSonarQubeEnv(env.SONARQUBE_SERVER) {
-    sh """
-    mvn sonar:sonar \
-        -Dsonar.projectKey=${env.SONARQUBE_PROJECT_KEY} \
-        -Dsonar.host.url=${env.SONARQUBE_SERVER} \
-        -Dsonar.login=${env.SONARQUBE_TOKEN}
-    """
 ==========================================================================================================
 
 stage('Quality Gate') {
     steps {
         script {
-            timeout(time: 2, unit: 'MINUTES') { // Adjust timeout as needed
+            timeout(time: 2, unit: 'MINUTES') {
                 def qualityGate = waitForQualityGate()
                 if (qualityGate.status != 'OK') {
                     error "Pipeline aborted due to SonarQube Quality Gate failure: ${qualityGate.status}"
