@@ -1,0 +1,10 @@
+environment {
+    PATH = "/opt/apache-maven-3.9.1/bin:$PATH"
+}
+
+stage('Clean and Install') {
+    steps {
+        sh 'mvn clean install/deploy'
+    }
+}
+
